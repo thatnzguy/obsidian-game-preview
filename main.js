@@ -63,7 +63,8 @@ class GameCardWidget extends WidgetType {
 }
 
 // ---------------------------------------------------------------------------
-// CM6 ViewPlugin — replaces matching lines with widgets (hides when cursor is on the line)
+// CM6 ViewPlugin — always renders card; when cursor is on the URL line,
+// the raw URL stays visible and the card appears below it simultaneously.
 // ---------------------------------------------------------------------------
 
 function buildEditorPlugin(plugin) {
@@ -80,7 +81,7 @@ function buildEditorPlugin(plugin) {
             }
 
             build(view) {
-                const builder  = new RangeSetBuilder();
+                const builder = new RangeSetBuilder();
                 const { doc, selection } = view.state;
                 const cursorPos = selection.main.head;
 
@@ -90,17 +91,21 @@ function buildEditorPlugin(plugin) {
                         const line = doc.lineAt(pos);
                         const text = line.text.trim();
 
-                        // Only replace when cursor is not on this line
-                        const cursorOnLine = cursorPos >= line.from && cursorPos <= line.to;
+                        if (isGameUrl(text)) {
+                            const cursorOnLine = cursorPos >= line.from && cursorPos <= line.to;
 
-                        if (!cursorOnLine && isGameUrl(text)) {
-                            builder.add(
-                                line.from,
-                                line.to,
-                                Decoration.replace({
+                            if (cursorOnLine) {
+                                // Cursor is on the URL — keep raw text visible, append card below it
+                                builder.add(line.to, line.to, Decoration.widget({
                                     widget: new GameCardWidget(text, plugin),
-                                })
-                            );
+                                    side: 1,
+                                }));
+                            } else {
+                                // Cursor elsewhere — replace URL with card
+                                builder.add(line.from, line.to, Decoration.replace({
+                                    widget: new GameCardWidget(text, plugin),
+                                }));
+                            }
                         }
 
                         pos = line.to + 1;

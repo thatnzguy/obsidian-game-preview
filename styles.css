@@ -12,6 +12,12 @@
     font-size: 0.9em;
 }
 
+/* When the card is appended after the visible URL line (cursor-on-line mode) */
+.cm-line .game-preview-card {
+    margin-top: 6px;
+    border-color: var(--interactive-accent);
+}
+
 .game-preview-card {
     border: 1px solid var(--background-modifier-border);
     border-radius: 8px;
