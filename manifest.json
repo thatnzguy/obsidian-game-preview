@@ -1,0 +1,9 @@
+{
+  "id": "game-preview",
+  "name": "Game Preview",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Renders a game card from a Steam or itch.io URL — showing title, description, and screenshots.",
+  "author": "Joel",
+  "isDesktopOnly": false
+}

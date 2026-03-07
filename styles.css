@@ -1,0 +1,97 @@
+.game-preview-loading {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 8px 0;
+}
+
+.game-preview-error {
+    color: var(--text-error);
+    background: var(--background-modifier-error);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.9em;
+}
+
+.game-preview-card {
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--background-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.game-preview-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.game-preview-badge {
+    font-size: 0.6em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+/* Brand colours kept intentionally — these are platform identity colours,
+   not theme colours. Adjust opacity to blend with dark/light themes. */
+.game-preview-badge--steam {
+    background: #1b2838;
+    color: #c7d5e0;
+}
+
+.game-preview-badge--itch {
+    background: #fa5c5c;
+    color: #ffffff;
+}
+
+.game-preview-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-normal);
+    text-decoration: none;
+}
+
+.game-preview-title:hover {
+    text-decoration: underline;
+    color: var(--text-accent);
+}
+
+.game-preview-title:focus-visible {
+    outline: 2px solid var(--interactive-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+.game-preview-description {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-preview-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.game-preview-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    background: var(--background-modifier-border);
+}
